@@ -1,12 +1,31 @@
-import './App.css';
-import UploadPortfolio from './UploadPortfolio'; 
+import React, { useEffect } from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Portfolios from "./pages/Portfolios";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 function App() {
+
+  useEffect(() => {
+    if (localStorage.theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
   return (
     <>
-        <UploadPortfolio portfolio_id="core_portfolio" />
+        <Routes>
+          <Route exact path="/portfolios/:portfolio_id" element={<Portfolios />}/>
+          <Route exact path="/portfolios" element={<Portfolios />}/>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
     </>
   );
+
 }
 
 export default App;
