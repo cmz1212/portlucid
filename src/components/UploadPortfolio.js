@@ -81,4 +81,5 @@ export default function UploadPortfolio({ accessToken, isOpen, onClose }) {
             </div>
         </Modal>
     );
+    
 }

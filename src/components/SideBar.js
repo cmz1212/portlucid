@@ -31,20 +31,28 @@ function SideBar({ sidebar, openUploadModal, progress, userName, portfolios }) {
           </Link>
         </div>
         <hr className="mb-4 border-zinc-300 dark:border-zinc-700" />
-          {portfolios.slice().reverse().map((portfolio, key) => {
-            return (
-              <Link
-                key={key}
-                to={`/portfolios/${portfolio.id}`}
-                onClick={() => {
-                  sidebar();
-                }}
-                className="block w-full text-left dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700  py-3 px-7 overflow-x-hidden"
-                style={{ whiteSpace: "nowrap" }}
-              >
-               {portfolio.portfolio_name}
-              </Link>
-            )})}
+        {(Array.isArray(portfolios) && portfolios.length > 0) ? (
+          <>
+            {portfolios
+              .slice().sort((a, b) => a.portfolio_id - b.portfolio_id)
+              .map((portfolio, key) => {
+              return (
+                <Link
+                  key={key}
+                  to={`/portfolios/${portfolio.portfolio_id}`}
+                  onClick={() => {
+                    sidebar();
+                  }}
+                  className="block w-full text-left dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 py-3 px-7 overflow-x-hidden"
+                  style={{ whiteSpace: "nowrap" }}
+                >
+                {portfolio.portfolio_name}
+                </Link>
+              )})}
+          </>
+        ):(
+          <div className="block w-full text-left dark:text-white py-3 px-7 overflow-x-hidden">No Portfolio</div>
+        )}
         <hr className="my-4 border-zinc-300 dark:border-zinc-700" />
         <div className="px-7">
           <button onClick={handleAddPortfolio} className="w-full bg-zinc-200 py-2.5 rounded-md text-zinc-700 dark:text-zinc-200 hover:text-zinc-900 hover:bg-zinc-300 dark:bg-zinc-700 dark:hover:text-white dark:hover:bg-zinc-800">

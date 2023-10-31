@@ -66,14 +66,14 @@ function Footer() {
           </ul>
 
           <div className="text-sm text-zinc-600 mr-4">
-            Made by{" "}
+            {/* Made by{" "}
             <a
               className="text-zinc-600 hover:underline"
               href="https://github.com/cmz1212"
             >
               MZ
             </a>
-            . All Rights Reserved.
+            .  */}All Rights Reserved.
           </div>
         </div>
       </div>

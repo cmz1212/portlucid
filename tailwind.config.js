@@ -18,6 +18,10 @@ module.exports = {
       maxWidth: {
         "8xl": "96rem",
       },
+      spacing: {
+        '10': '2.5rem',
+        '15': '3.75rem',
+      },
     },
   },
 };
