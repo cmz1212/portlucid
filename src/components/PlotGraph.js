@@ -40,6 +40,13 @@ export default function PlotGraph({ portfolios, accessToken, isPlot, exclRebalan
               [portfolioId]: data,
             }));
           }
+        } else {
+          // If isPlot[portfolioId] is false, delete it from trendData
+          setTrendData((prevData) => {
+            const newData = { ...prevData };
+            delete newData[portfolioId];
+            return newData;
+            });
         }
       }
     }
@@ -47,7 +54,10 @@ export default function PlotGraph({ portfolios, accessToken, isPlot, exclRebalan
     fetchAndProcessDataForPortfolios();
   }, [accessToken, isPlot, exclRebalancing]);
 
-  return (
-      <PlotlyObj portfolios={portfolios} trendData={trendData} />
-  );
+  // Check if isPlot is not empty and has at least one true value
+  const shouldRenderPlotlyObj = Object.values(isPlot).some((value) => value);
+
+  return shouldRenderPlotlyObj ? (
+    <PlotlyObj portfolios={portfolios} trendData={trendData} />
+  ) : null;
 }

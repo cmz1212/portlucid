@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { FaMoneyBillTrendUp } from 'react-icons/fa6';
 import { io } from "socket.io-client";
@@ -26,9 +26,6 @@ function Portfolios() {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const [message, setMessage] = useState('');
-  const [idUpdate, setidUpdate] = useState(null);
-  const [selectedFile, setselectedFile] = useState(null);
-  const fileInputRef = useRef(null);
 
   const openUploadModal = () => {
     setIsUploadModalOpen(true);
@@ -69,48 +66,6 @@ function Portfolios() {
         console.error("Error: ", error);
       }
 
-    }
-  };
-
-  const handleFileChange = async (event) => {
-    if (event.target.files[0]) {
-      setselectedFile(event.target.files[0]);
-    }
-  
-    try {
-      if (selectedFile) {
-        const formData = new FormData();
-        formData.append('file', selectedFile);
-        const response = await fetch(`${URL}/portfolios/${idUpdate}`, {
-          method: 'PUT',
-          body: formData,
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          }
-        });
-  
-        if (response.ok) {
-          showAlertMessage("Portfolio Updated Successfully");
-        } else {
-          alert('Portfolio Update Failed. Status Code: ' + response.status);
-        }
-      }
-    } catch (error) {
-      alert('Fetch Error: ' + error.message);
-    } finally {
-      setselectedFile(null);
-    }
-  };  
-  
-  const handleUpdatePort = (id) => {
-    if (progress > 0 && progress < 100) {
-      showAlertMessage("Please wait for the current portfolio to be uploaded completely");
-    } else {
-      const confirmModify = window.confirm("Are you sure you want to update this portfolio?");
-      if (confirmModify) {
-        setidUpdate(id);
-        fileInputRef.current.click();
-      }
     }
   };
   
@@ -217,8 +172,8 @@ function Portfolios() {
         <Navbar sidebar={() => {setSidebar(true);}} userName={userName} />
           <div className="grow flex flex-col w-full justify-center">
             <div className="flex justify-center">
-              <div className="p-5 flex flex-col text-center rounded-3xl py-3">
-                <h1 className="text-5xl font-bold dark:text-white text-zinc-900">
+              <div className="p-5 py-1 flex flex-col text-center">
+                <h1 className="p-3 text-5xl font-bold dark:text-white text-zinc-900">
                   Overview
                 </h1>
                 <PlotGraph portfolios={portfolios} accessToken={accessToken} isPlot={isPlot} exclRebalancing={exclRebalancing} />
@@ -249,8 +204,6 @@ function Portfolios() {
                             ...
                               <div className="z-10 flex flex-col absolute min-w-160 shadow-md right-0 top-5 text-zinc-900 dark:text-white bg-white dark:bg-zinc-800 border dark:border-zinc-600 hidden group-hover:flex">
                                 <button className="text-base text-left font-semibold pl-1.5 pr-6" onClick={() => handleDownloadPort(portfolio.portfolio_id, portfolio.portfolio_name)}>Download</button>
-                                <input type="file" accept=".csv" ref={fileInputRef} onChange={(event) => handleFileChange(event)} style={{ display: 'none' }} />
-                                <button className="text-base text-left font-semibold pl-1.5 pr-6" onClick={() => handleUpdatePort(portfolio.portfolio_id)}>Update</button>
                                 <button className="text-base text-left font-semibold pl-1.5 pr-6" onClick={() => handleDeletePort(portfolio.portfolio_id)}>Delete</button>
                               </div>
                           </div>

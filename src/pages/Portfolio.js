@@ -159,7 +159,7 @@ function Portfolio() {
                 </h1>
               </div>
             </div>
-            <div className="grow w-full flex flex-col items-center bg-zinc-100 dark:bg-zinc-700 ">
+            <div className="grow w-full flex flex-col items-center bg-zinc-100 dark:bg-zinc-700">
               <div className="grid w-full max-w-8xl grid-cols-1 gap-5 p-4 justify-center">
               {underPortfolio.length> 0 ? (renderPortfolioData()) : (
                 <div className="mt-5 gap-15 text-center text-2xl text-zinc-900 dark:text-white">Loading...</div>

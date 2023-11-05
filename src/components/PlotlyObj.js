@@ -54,7 +54,7 @@ export default function PlotlyObj({ portfolios, trendData }) {
       y: 1, // Adjust the legend position as needed
     },
     margin: {
-      t: 20, // Reduce top padding
+      t: 25, // Reduce top padding
       b: 20, // Reduce bottom padding
     },
     plot_bgcolor: 'transparent', // Set the plot background color to transparent
