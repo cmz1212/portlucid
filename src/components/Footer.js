@@ -13,7 +13,7 @@ function Footer() {
             <p className="text-sm text-zinc-600 mb-4">
               Add an issue on the{" "}
               <a
-                href="https://github.com/cmz1212"
+                href="mailto:chua.ming.zhou.1212@gmail.com"
                 className="text-zinc-900 font-bold"
               >
                 {" "}
@@ -26,7 +26,7 @@ function Footer() {
           <ul className="flex mb-4 md:order-1 md:ml-4 md:mb-0">
             <li>
               <a
-                href="https://twitter.com/cmz1212"
+                href="chua.ming.zhou.1212@gmail.com"
                 className="flex justify-center items-center text-zinc-200 hover:text-zinc-100 bg-zinc-800 hover:bg-zinc-800 rounded-full shadow transition duration-150 ease-in-out"
                 aria-label="Twitter"
               >
@@ -41,7 +41,7 @@ function Footer() {
             </li>
             <li className="ml-4">
               <a
-                href="https://github.com/cmz1212"
+                href="chua.ming.zhou.1212@gmail.com"
                 className="flex justify-center items-center text-zinc-200 hover:text-zinc-100 bg-zinc-800 hover:bg-zinc-800 rounded-full shadow transition duration-150 ease-in-out"
                 aria-label="Github"
               >
@@ -56,7 +56,7 @@ function Footer() {
             </li>
             <li className="ml-4">
               <a
-                href="https://www.linkedin.com/cmz1212"
+                href="chua.ming.zhou.1212@gmail.com"
                 className="flex justify-center items-center text-zinc-100 hover:text-zinc-100 bg-zinc-800 hover:bg-zinc-800 rounded-full shadow transition duration-150 ease-in-out w-8 h-8"
                 aria-label="Github"
               >
@@ -66,14 +66,7 @@ function Footer() {
           </ul>
 
           <div className="text-sm text-zinc-600 mr-4">
-            {/* Made by{" "}
-            <a
-              className="text-zinc-600 hover:underline"
-              href="https://github.com/cmz1212"
-            >
-              MZ
-            </a>
-            .  */}All Rights Reserved.
+            All Rights Reserved.
           </div>
         </div>
       </div>
